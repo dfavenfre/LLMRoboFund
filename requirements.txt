@@ -1,0 +1,5 @@
+streamlit==1.28.0
+tefas-crawler==0.3.4
+openai==0.28.1
+cohere==4.36
+streamlit-dynamic-filters==0.1.3
