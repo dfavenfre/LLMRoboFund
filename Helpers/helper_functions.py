@@ -954,7 +954,6 @@ def create_tablev2(connection, cursor, tablename: str):
             government_debt_sec_issued_in_precious_metal_percentage FLOAT,
             gov_lease_certificates_issued_in_precious_metal_percentage FLOAT,
             international_government_debt_percentage FLOAT,
-            international_corporate_debt_sec_percentage FLOAT,
             foreign_equity_percentage FLOAT,
             international_etf_percentage FLOAT,
             investment_funds_participation_share_percentage FLOAT,
@@ -962,7 +961,6 @@ def create_tablev2(connection, cursor, tablename: str):
             real_estate_fund_participation_share_percentage FLOAT,
             venture_capital_fund_participation_share_percentage FLOAT,
             futures_contract_cash_collateral_percentage FLOAT,
-            other_percentage FLOAT
                 )
             
             """
