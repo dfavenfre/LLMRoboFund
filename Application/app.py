@@ -23,7 +23,7 @@ with st.sidebar:
         options=["Info", "LLM-RoboFund", "Dashboard"],
         icons=["info-circle", "robot", "bar-chart-line-fill"],
         menu_icon="cast",
-        default_index=2,
+        default_index=1,
     )
 
 # Index-0; Project Info

@@ -1,10 +1,11 @@
-from langchain.memory import ConversationBufferWindowMemory
+from langchain.memory import ConversationBufferMemory
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.sql_database import SQLDatabase
 from langchain.agents import initialize_agent, AgentType
-from langchain.prompts.chat import PromptTemplate
-from langchain.chat_models import ChatOpenAI, ChatCohere
-from tools.tools import query_from_vdb, query_from_sql
-from Helpers.helper_functions import tool_initializer
 from langchain.prompts import PromptTemplate
+from langchain.chat_models import ChatOpenAI, ChatCohere
+from tools.tools import query_from_vdb, query_from_sql, query_sql
+from Helpers.helper_functions import tool_initializer
 import json
 import os
 

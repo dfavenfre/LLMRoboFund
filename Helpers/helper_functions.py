@@ -983,3 +983,26 @@ def get_data(cursor, table_name: str):
     datatable = cursor.fetchall()
 
     return datatable
+
+from langchain.memory import ConversationBufferMemory
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.sql_database import SQLDatabase
+db = SQLDatabase.from_uri(database_uri=os.environ.get("uri_path"))
+memory = ConversationBufferMemory(return_messages=True)
+
+
+def get_schema(_):
+    global db
+    return db.get_table_info()
+
+
+def run_query(query):
+    global db
+    return db.run(query)
+
+
+def save(input_output):
+    global memory
+    output = {"output": input_output.pop("output")}
+    memory.save_context(input_output, output)
+    return output["output"]
