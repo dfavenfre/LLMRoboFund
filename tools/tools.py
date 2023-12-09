@@ -11,12 +11,9 @@ from langchain.vectorstores import Pinecone
 from langchain.sql_database import SQLDatabase
 from langchain.chains import RetrievalQA
 from langchain.agents import AgentType
-from dotenv import load_dotenv
 import pinecone
 import json
 import os
-
-load_dotenv()
 
 
 def query_from_sql():

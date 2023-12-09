@@ -6,9 +6,9 @@ from langchain.retrievers.document_compressors import (
 from langchain.schema import LLMResult
 from langchain.document_transformers import EmbeddingsRedundantFilter
 from langchain.retrievers import ContextualCompressionRetriever
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
 from langchain.embeddings import CohereEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -63,7 +63,7 @@ def find_tools_by_name(tools: List[Tool], tool_name: str) -> Tool:
 
 
 def tool_initializer(
-    names: list[str], functions: list[callable], descriptions: list[str]
+    names: list[str], functions: list[callable], descriptions: list[str]  # type: ignore
 ) -> list:
     """
     Description:
@@ -150,8 +150,8 @@ def chunk_up_documents(
     """
 
     pinecone.init(
-        api_key=os.environ.get("pinecone_api_key"),
-        environment=os.environ.get("pinecone_environment_value"),
+        api_key=os.environ.get("pinecone_api_key"),  # type: ignore
+        environment=os.environ.get("pinecone_environment_value"),  # type: ignore
     )
     print("accessing to pdf directory...")
     documents = []
@@ -168,7 +168,7 @@ def chunk_up_documents(
     chunked_docs = text_splitter.split_documents(documents)
     print("chunking is complete...")
     embeddings_model = OpenAIEmbeddings(
-        openai_api_key=os.environ.get("OPENAI_API_KEY"), model="text-embedding-ada-002"
+        openai_api_key=os.environ.get("OPENAI_API_KEY"), model="text-embedding-ada-002"  # type: ignore
     )
     print("uploading embedding chunks to pinecone...")
     docsearch = Pinecone.from_documents(
@@ -200,8 +200,8 @@ def create_vectordb(index_name: str, metric: str, dimension: int):
     This function initializes the Pinecone environment, creates an index if it doesn't exist, and configures the index with the specified metric and dimension.
     """
     pinecone.init(
-        api_key=os.environ.get("pinecone_api_key"),
-        environment=os.environ.get("pinecone_environment_value"),
+        api_key=os.environ.get("pinecone_api_key"),  # type: ignore
+        environment=os.environ.get("pinecone_environment_value"),  # type: ignore
     )
 
     if index_name in pinecone.list_indexes():
@@ -213,7 +213,7 @@ def create_vectordb(index_name: str, metric: str, dimension: int):
 
 
 def filter_embeddings(
-    search_object, embedding_model, s_threshold: int = 0.5, r_threshold: int = 0.76
+    search_object, embedding_model, s_threshold: float = 0.5, r_threshold: float = 0.76
 ):
     """
     Description:
@@ -259,11 +259,13 @@ def filter_embeddings(
 
     """
     # Embedding Filters
-    relevancy_filter = EmbeddingsFilter(embeddings=embedding_model, s_threshold=0.5)
+    relevancy_filter = EmbeddingsFilter(
+        embeddings=embedding_model, s_threshold=s_threshold # type: ignore
+    )
 
     # Add redundant filter to omit out documents with a similarity score lower than the threshold
     redundant_filter = EmbeddingsRedundantFilter(
-        embeddings=embedding_model, r_threshold=0.76
+        embeddings=embedding_model, r_threshold=r_threshold # type: ignore
     )
 
     # Create a compressor pipeline
@@ -641,7 +643,7 @@ def scrape_asset_size_data(driver):
 
 def scrape_fund_details():
     url = "https://fundturkey.com.tr/(S(whrurtm4qvulf2vgismdtgax))/TarihselVeriler.aspx"
-    service = Service(executable_path=os.environ.get("web_driver_path"))
+    service = Service(executable_path=os.environ.get("web_driver_path")) # type: ignore
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
@@ -984,9 +986,11 @@ def get_data(cursor, table_name: str):
 
     return datatable
 
+
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.sql_database import SQLDatabase
+
 db = SQLDatabase.from_uri(database_uri=os.environ.get("uri_path"))
 memory = ConversationBufferMemory(return_messages=True)
 

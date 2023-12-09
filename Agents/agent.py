@@ -4,7 +4,7 @@ from langchain.sql_database import SQLDatabase
 from langchain.agents import initialize_agent, AgentType
 from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI, ChatCohere
-from tools.tools import query_from_vdb, query_from_sql, query_sql
+from tools.tools import query_from_vdb, query_from_sql
 from Helpers.helper_functions import tool_initializer
 import json
 import os
