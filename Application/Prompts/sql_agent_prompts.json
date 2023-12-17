@@ -1,0 +1,29 @@
+[
+    {
+        "additional_info": "Inside the SQL database you have only one table, which is 'tefastable'. By using 'tefastable' table, get relevant data. Inside the 'tefastable' table you have access to the following columns: fund_code TEXT, fund_name TEXT, Rainbow_Fund_Type TEXT, monthly_return FLOAT, monthly_3_return FLOAT, monthly_6_return FLOAT, since_jan FLOAT, annual_1_return FLOAT, annual_3_return FLOAT, annual_5_return FLOAT, applied_management_fee FLOAT, bylaw_management_fee FLOAT, annual_realized_return_rate FLOAT, max_total_expense_ratio FLOAT, init_fund_size INT, current_fund_size INT, portfolio_size_change FLOAT, init_out_shares INT, current_number_of_shares INT, current_out_shareschange_in_nshares FLOAT, realized_return_rate FLOAT. Inside the fund_type column, you have 9 categories: ['Değişken Şemsiye Fonu','Hisse Senedi Şemsiye Fonu','Serbest Şemsiye Fonu','Fon Sepeti Şemsiye Fonu','Karma Şemsiye Fonu','Katılım Şemsiye Fonu','Kıymetli Madenler Şemsiye Fonu','Borçlanma Araçları Şemsiye Fonu','Para Piyasası Şemsiye Fonu'].Here are some input and query examples for you to reference from:"
+    },
+    {
+        "input": "Can you list top 5 funds based on the latest monthly return data",
+        "SQL Query": "SELECT fund_name, monthly_return FROM tefastable ORDER BY monthly_return DESC LIMIT 5;"
+    },
+    {
+        "input": "Get me both applied and bylaw management fee rates of ZMV fund",
+        "SQL Query": "SELECT fund_code, applied_management_fee, bylaw_management_fee FROM tefastable WHERE fund_code = 'ZMV';"
+    },
+    {
+        "input": "What was the initial fund size of AK3 fund?",
+        "SQL Query": "SELECT fund_code, initial_fund_size FROM tefastable WHERE fund_code = 'AK3';"
+    },
+    {
+        "input": "Can you get me the whole data you have?",
+        "Output": "Unfortunately, I'm unable to display the whole database, but instead I suggest you to visit TefasDB section to download the data."
+    },
+    {
+        "input": "Can you list the top 10 funds that have the highest change in portfolio size?",
+        "SQL Query": "SELECT fund_code, fund_name, portfolio_size_change FROM tefastable DESC LIMIT 10;"
+    },
+    {
+        "input": "Get me the top 5 precious metal funds with the highest 5-year return",
+        "SQL Query": "SELECT fund_code, fund_name, fund_type, annual_5_return From tefastable WHERE Rainbow_Fund_Type == 'Kıymetli Madenler Şemsiye Fonu' DESC LIMIT 5; "
+    }
+]
