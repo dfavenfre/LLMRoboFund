@@ -13,7 +13,6 @@ psutil==5.9.6
 gputil==1.4.0
 tiktoken==0.5.2
 selenium==4.16.0
-urllib==2.1.0
 chardet==5.2.0
 streamlit_option_menu==0.3.6
 streamlit_chat==0.1.1
