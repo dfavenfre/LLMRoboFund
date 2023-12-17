@@ -18,7 +18,7 @@ def run_robofund_agent(query: str) -> str:
     with open("./intermediate_agent_template.json", "r") as file:
         system_prompt = json.load(file)
     llm = ChatOpenAI(
-        openai_api_key=st.secrets["OPENAI_API_KEY"],
+        openai_api_key=st.secrets.OPENAI_API_KEY,
         temperature=0,
         model="gpt-3.5-turbo",
         model_kwargs={"stop": ["\Observation:"]},
