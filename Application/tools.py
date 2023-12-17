@@ -1,4 +1,4 @@
-from Helpers.helper_functions import filter_embeddings, get_schema, run_query, save
+from helper_functions import filter_embeddings, get_schema, run_query, save
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.schema.output_parser import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
