@@ -21,6 +21,7 @@ from langchain.agents import Tool
 from datetime import datetime, timedelta
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+import streamlit as st
 import numpy as np
 import sqlite3
 import pandas as pd
