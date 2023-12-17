@@ -1,6 +1,6 @@
 from streamlit_option_menu import option_menu
-from Application.agent import run_robofund_agent
-from Application.helper_functions import get_data
+from agent import run_robofund_agent
+from helper_functions import get_data
 from streamlit_chat import message
 import sqlite3
 import streamlit as st
