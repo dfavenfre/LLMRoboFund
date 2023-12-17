@@ -15,7 +15,7 @@ sql_tool = query_from_sql()
 
 def run_robofund_agent(query: str) -> str:
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "intermediate_agent_template.json")
+    file_path = os.path.join(script_dir, "Application/intermediate_agent_template.json")
     system_prompt = ""
     with open(file_path, "r") as file:
         system_prompt = json.load(file)
