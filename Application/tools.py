@@ -28,7 +28,7 @@ def query_from_sql():
         sql_prompt = json.load(file)
 
     llm = ChatOpenAI(
-        openai_api_key=st.secrets["OPENAI_API_KEY"],
+        openai_api_key=st.secrets.OPENAI_API_KEY,
         temperature=1e-10,
         model="gpt-3.5-turbo",
     )
