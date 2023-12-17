@@ -150,8 +150,8 @@ def chunk_up_documents(
     """
 
     pinecone.init(
-        api_key=os.environ.get("pinecone_api_key"),  # type: ignore
-        environment=os.environ.get("pinecone_environment_value"),  # type: ignore
+        api_key=st.secrets["pinecone_api_key"],  # type: ignore
+        environment=st.secrets["pinecone_environment_value"],  # type: ignore
     )
     print("accessing to pdf directory...")
     documents = []
@@ -168,7 +168,7 @@ def chunk_up_documents(
     chunked_docs = text_splitter.split_documents(documents)
     print("chunking is complete...")
     embeddings_model = OpenAIEmbeddings(
-        openai_api_key=os.environ.get("OPENAI_API_KEY"), model="text-embedding-ada-002"  # type: ignore
+        openai_api_key=st.secrets["OPENAI_API_KEY"], model="text-embedding-ada-002"  # type: ignore
     )
     print("uploading embedding chunks to pinecone...")
     docsearch = Pinecone.from_documents(
@@ -200,8 +200,8 @@ def create_vectordb(index_name: str, metric: str, dimension: int):
     This function initializes the Pinecone environment, creates an index if it doesn't exist, and configures the index with the specified metric and dimension.
     """
     pinecone.init(
-        api_key=os.environ.get("pinecone_api_key"),  # type: ignore
-        environment=os.environ.get("pinecone_environment_value"),  # type: ignore
+        api_key=st.secrets["pinecone_api_key"],  # type: ignore
+        environment=st.secrets["pinecone_environment_value"],  # type: ignore
     )
 
     if index_name in pinecone.list_indexes():
@@ -991,7 +991,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.sql_database import SQLDatabase
 
-db = SQLDatabase.from_uri(database_uri=os.environ.get("uri_path"))
+db = SQLDatabase.from_uri(database_uri=st.secrets["uri_path"])
 memory = ConversationBufferMemory(return_messages=True)
 
 
