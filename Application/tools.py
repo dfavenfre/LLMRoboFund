@@ -24,7 +24,7 @@ def query_from_sql():
     management fees, number of initial outstanding shares, and etc.
     """
     sql_prompt = ""
-    with open("Prompts/sql_agent_prompts.json", "r") as file:
+    with open("sql_agent_prompts.json", "r") as file:
         sql_prompt = json.load(file)
 
     llm = ChatOpenAI(
