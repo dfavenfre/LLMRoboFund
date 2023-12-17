@@ -33,7 +33,7 @@ def query_from_sql():
         model="gpt-3.5-turbo",
     )
 
-    database = SQLDatabase.from_uri(database_uri=st.secrets["URI_PATH"])
+    database = SQLDatabase.from_uri(database_uri=st.secrets.URI_PATH)
     toolkit = SQLDatabaseToolkit(
         db=database,
         llm=llm,
@@ -59,20 +59,20 @@ def query_from_vdb(text: str) -> str:
     """
 
     chat_model = ChatOpenAI(
-        openai_api_key=st.secrets["OPENAI_API_KEY"],
+        openai_api_key=st.secrets.OPENAI_API_KEY,
         temperature=0,
         model="gpt-3.5-turbo",
     )
     embeddings_cohere = OpenAIEmbeddings(
-        openai_api_key=st.secrets["OPENAI_API_KEY"], model="text-embedding-ada-002"
+        openai_api_key=st.secrets.OPENAI_API_KEY, model="text-embedding-ada-002"
     )
     pinecone.init(
-        api_key=secrets["PINECONE_API"],
-        environment=st.secrets["PINECONE_ENV"],
+        api_key=st.secrets.PINECONE_API,
+        environment=st.secrets.PINECONE_ENV,
     )
 
     searcher = Pinecone.from_existing_index(
-        index_name=st.secrets["PINECONE_IDX"], embedding=embeddings_cohere
+        index_name=st.secrets.PINECONE_IDX, embedding=embeddings_cohere
     )
     context_compressor_retriever = filter_embeddings(
         search_object=searcher,
@@ -90,10 +90,10 @@ def query_from_vdb(text: str) -> str:
 
 
 def query_sql(question: str):
-    db = SQLDatabase.from_uri(st.secrets["URI_PATH"])
+    db = SQLDatabase.from_uri(st.secrets.URI_PATH)
 
     llm = ChatOpenAI(
-        openai_api_key=st.secrets["OPENAI_API_KEY"],
+        openai_api_key=st.secrets.OPENAI_API_KEY,
         temperature=0,
         model="gpt-3.5-turbo",
     )
