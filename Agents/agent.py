@@ -50,6 +50,7 @@ def run_robofund_agent(query: str) -> str:
         verbose=True,
         handle_parsing_errors=True,
         early_stopping_method="generate",
+        
     )
 
     prompt_template = PromptTemplate(template=template, input_variables=["question"])
