@@ -24,9 +24,9 @@ def query_from_sql():
     management fees, number of initial outstanding shares, and etc.
     """
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "intermediate_agent_template.json")
+    file_path = os.path.join(script_dir, "sql_agent_prompts.json")
     sql_prompt = ""
-    with open("Prompts/sql_agent_prompts.json", "r") as file:
+    with open(file_path, "r") as file:
         sql_prompt = json.load(file)
 
     llm = ChatOpenAI(
