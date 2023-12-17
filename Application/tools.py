@@ -27,12 +27,12 @@ def query_from_sql():
         sql_prompt = json.load(file)
 
     llm = ChatOpenAI(
-        openai_api_key=os.environ.get("OPENAI_API_KEY"),
+        openai_api_key=st.secrets["OPENAI_API_KEY"],
         temperature=1e-10,
         model="gpt-3.5-turbo",
     )
 
-    database = SQLDatabase.from_uri(database_uri=os.environ.get("uri_path"))
+    database = SQLDatabase.from_uri(database_uri=st.secrets["uri_path"])
     toolkit = SQLDatabaseToolkit(
         db=database,
         llm=llm,
@@ -58,20 +58,20 @@ def query_from_vdb(text: str) -> str:
     """
 
     chat_model = ChatOpenAI(
-        openai_api_key=os.environ.get("OPENAI_API_KEY"),
+        openai_api_key=st.secrets["OPENAI_API_KEY"],
         temperature=0,
         model="gpt-3.5-turbo",
     )
     embeddings_cohere = OpenAIEmbeddings(
-        openai_api_key=os.environ.get("OPENAI_API_KEY"), model="text-embedding-ada-002"
+        openai_api_key=st.secrets["OPENAI_API_KEY"], model="text-embedding-ada-002"
     )
     pinecone.init(
-        api_key=os.environ.get("pinecone_api_key"),
-        environment=os.environ.get("pinecone_environment_value"),
+        api_key=secrets["pinecone_api_key"],
+        environment=st.secrets["pinecone_environment_value"],
     )
 
     searcher = Pinecone.from_existing_index(
-        index_name=os.environ.get("pinecone_index"), embedding=embeddings_cohere
+        index_name=st.secrets["pinecone_index"], embedding=embeddings_cohere
     )
     context_compressor_retriever = filter_embeddings(
         search_object=searcher,
@@ -89,10 +89,10 @@ def query_from_vdb(text: str) -> str:
 
 
 def query_sql(question: str):
-    db = SQLDatabase.from_uri(os.environ.get("uri_path"))
+    db = SQLDatabase.from_uri(st.secrets["uri_path"])
 
     llm = ChatOpenAI(
-        openai_api_key=os.environ.get("OPENAI_API_KEY"),
+        openai_api_key=st.secrets["OPENAI_API_KEY"],
         temperature=0,
         model="gpt-3.5-turbo",
     )
