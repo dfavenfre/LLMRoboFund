@@ -33,7 +33,7 @@ def query_from_sql():
         model="gpt-3.5-turbo",
     )
 
-    database = SQLDatabase.from_uri(database_uri="sqlite:///Application/SQLiteDB/tefas.db")
+    database = SQLDatabase.from_uri(database_uri="sqlite:///.../SQLiteDB/tefas.db")
     toolkit = SQLDatabaseToolkit(
         db=database,
         llm=llm,
