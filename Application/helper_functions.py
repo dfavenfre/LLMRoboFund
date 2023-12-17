@@ -151,8 +151,8 @@ def chunk_up_documents(
     """
 
     pinecone.init(
-        api_key=st.secrets["pinecone_api_key"],  # type: ignore
-        environment=st.secrets["pinecone_environment_value"],  # type: ignore
+        api_key=st.secrets["PINECONE_API"],  # type: ignore
+        environment=st.secrets["PINECONE_ENV"],  # type: ignore
     )
     print("accessing to pdf directory...")
     documents = []
@@ -201,8 +201,8 @@ def create_vectordb(index_name: str, metric: str, dimension: int):
     This function initializes the Pinecone environment, creates an index if it doesn't exist, and configures the index with the specified metric and dimension.
     """
     pinecone.init(
-        api_key=st.secrets["pinecone_api_key"],  # type: ignore
-        environment=st.secrets["pinecone_environment_value"],  # type: ignore
+        api_key=st.secrets["PINECONE_API"],  # type: ignore
+        environment=st.secrets["PINECONE_ENV"],  # type: ignore
     )
 
     if index_name in pinecone.list_indexes():
