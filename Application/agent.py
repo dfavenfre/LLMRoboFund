@@ -15,7 +15,7 @@ sql_tool = query_from_sql()
 
 def run_robofund_agent(query: str) -> str:
     system_prompt = ""
-    with open("Prompts\intermediate_agent_template.json", "r") as file:
+    with open("Prompts/intermediate_agent_template.json", "r") as file:
         system_prompt = json.load(file)
     llm = ChatOpenAI(
         openai_api_key=st.secrets["OPENAI_API_KEY"],
