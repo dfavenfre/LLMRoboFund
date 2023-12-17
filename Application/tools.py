@@ -11,6 +11,7 @@ from langchain.vectorstores import Pinecone
 from langchain.sql_database import SQLDatabase
 from langchain.chains import RetrievalQA
 from langchain.agents import AgentType
+import streamlit as st
 import pinecone
 import json
 import os
