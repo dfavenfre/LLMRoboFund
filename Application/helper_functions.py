@@ -992,9 +992,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.sql_database import SQLDatabase
 
-db = SQLDatabase.from_uri(database_uri=st.secrets["uri_path"])
-memory = ConversationBufferMemory(return_messages=True)
-
 
 def get_schema(_):
     global db
