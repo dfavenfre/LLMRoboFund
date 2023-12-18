@@ -6,6 +6,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI, ChatCohere
 from tools import query_from_vdb, query_from_sql
 from helper_functions import tool_initializer
+import streamlit as st
 import json
 import os
 
@@ -13,10 +14,9 @@ import os
 sql_tool = query_from_sql()
 
 def run_robofund_agent(query: str) -> str:
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "intermediate_agent_template.json")
+
     system_prompt = ""
-    with open(file_path, "r") as file:
+    with open(st.secrets.INTERMEDIATE_PROMPT, "r") as file:
         system_prompt = json.load(file)
     llm = ChatOpenAI(
         openai_api_key=st.secrets.OPENAI_API_KEY,
