@@ -6,6 +6,22 @@ LLMRoboFund presents a novel approach for chatting with an LLM to get informed a
 
 The data used to update the knowledge base of the LLM include [Turkey Electronic Fund Trading Platform](https://www.tefas.gov.tr/) and [Public Disclosure Platform](https://www.kap.org.tr/tr/YatirimFonlari/BYF). TEFT platform provide diverse financial information, such as management fee, outstanding number of shares, initial and current price, return data up-to 5 year, percentage distribution of the invested instruments, and so on. PDP share documents related to the funds/ETFs available at TEFT platform, such as investor information documents, which are the foundation of LLMRoboFund.  
 
+The list below include the available QA: 
+
+* Investment strategies
+* Investment purpose and policy
+* Managing company of the fund
+* Buy/Sell policy of the fund
+* Financial data, such as applied/bylaw management fees, return data up-to 5 year, number of initial and current shares. Basically all available financial information at [Turkey Electronic Fund Trading Platform](https://www.tefas.gov.tr/)
+
+
+
+# Disclosure
+Neither the content or LLM responses should be used to obtain investment idea or strategy, as the LLM responses are refined by diverse prompt engineering techniques and chain methods in accordance with my preferences.   
+
+
+
+
 # Requirements
 
 ```Python
