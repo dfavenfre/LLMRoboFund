@@ -23,10 +23,9 @@ def query_from_sql():
     questions related to monthly and annual returns of funds,\
     management fees, number of initial outstanding shares, and etc.
     """
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "sql_agent_prompts.json")
+
     sql_prompt = ""
-    with open(file_path, "r") as file:
+    with open(st.secrets.SQL_PROMPT, "r") as file:
         sql_prompt = json.load(file)
 
     llm = ChatOpenAI(
